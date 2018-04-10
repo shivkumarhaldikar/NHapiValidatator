@@ -17,7 +17,7 @@ namespace NHapi.MessageValidator
     using NHapi.Model.V26.Segment;
     using System.Reflection;
 
-    public class NHapiTest
+    public class NHapiValidator
     {
         private List<string> errorCollection = new List<string>();
         private string currentSegment = string.Empty;
