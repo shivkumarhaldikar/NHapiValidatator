@@ -61,9 +61,9 @@ namespace NHapi.MessageValidator
                     currentSegment = segment.GetStructureName();
                     IEnumerable<CSegment> csegs = segments.Where(cseg => cseg.Name.Equals(currentSegment));
                     if (csegs.Count() > 0)
-                        csegs.First().FieldNumber += 1;
+                        csegs.First().Sequence += 1;
                     else
-                        segments.Add(new CSegment() { Name = currentSegment, FieldNumber = 1 });
+                        segments.Add(new CSegment() { Name = currentSegment, Sequence = 1 });
 
                     for (int i = 1; i <= segment.NumFields(); i++)
                     {
@@ -88,7 +88,7 @@ namespace NHapi.MessageValidator
                 if (type.ExtraComponents.numComponents() > 0)
                 {
                     CSegment _cseg = segments.Where(cseg => cseg.Name.Equals(currentSegment)).First<CSegment>();
-                    errorCollection.Add(string.Format("{0}^{1}^{2}^102&Data type error&HL7nnnn", currentSegment, _cseg.FieldNumber, fieldNumber));
+                    errorCollection.Add(string.Format("{0}^{1}^{2}^102&Data type error&HL7nnnn", currentSegment, _cseg.Sequence, fieldNumber));
                 }
             }
         }
@@ -104,7 +104,7 @@ class CSegment
         set;
     }
 
-    public int FieldNumber
+    public int Sequence
     {
         get;
         set;
